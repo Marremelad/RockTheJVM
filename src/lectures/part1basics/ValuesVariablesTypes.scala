@@ -23,5 +23,5 @@ object ValuesVariablesTypes extends App {
   // Variables
   // In functional programing, a variable (var) is used for side effects.
   var aVariable: Int = 4
-  aVaraible = 5
+  aVariable = 5
 }
