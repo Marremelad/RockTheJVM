@@ -1,6 +1,7 @@
 package lectures.part1basics
 
 object CBVvsCBN extends App {
+
   def callByValue(x: Long): Unit = { // Evaluates the argument before passing it, showing the same results twice
     println(s"By value: $x")
     println(s"By value: $x")

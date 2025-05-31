@@ -1,6 +1,7 @@
 package lectures.part1basics
 
 object ValuesVariablesTypes extends App {
+
   val x: Int = 42
   // x = 2 Error
   // VALS ARE IMMUTABLE.
