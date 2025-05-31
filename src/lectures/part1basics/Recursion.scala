@@ -3,7 +3,7 @@ package lectures.part1basics
 import scala.annotation.tailrec
 
 // Tail recursive functions
-object Recursion extends App{
+object Recursion extends App {
   def factorial(n: Int): Int = {
     @tailrec
     def factAux(x: Int, acc: Int): Int = {
