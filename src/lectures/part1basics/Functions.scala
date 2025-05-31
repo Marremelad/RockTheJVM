@@ -14,8 +14,6 @@ object Functions extends App{
 
 //  println(aGreeting("John", 30))
 
-  // Factorial function.
-
   def factorial(n: Int): Long = {
     if (n <= 1) 1
     else
@@ -38,5 +36,5 @@ object Functions extends App{
 
 //  println(factorial(5))
 //  println(fibonacci(3))
-  println(isPrime(0))
+//  println(isPrime(0))
 }
