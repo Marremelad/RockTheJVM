@@ -7,7 +7,6 @@ object OOBasics extends App {
   // Constructor
   class Person(name: String = "Some name", val age: Int = 0) { // Constructor parameters only become fields if declared with val or var
     // Class body
-
     val x = 2 // Fields can also be defined inside the class
 
     println(1 + 3) // Every time an object of a class is instantiated, the code inside the class is evaluated. Any functions that are called will be run
@@ -25,7 +24,6 @@ object OOBasics extends App {
   }
 
   class Author(name: String, surname: String, dateOfBirth: LocalDate) {
-
     def fullName = s"$name $surname"
 
     def age(): Int = {
@@ -38,7 +36,6 @@ object OOBasics extends App {
   }
 
   class Novel(name: String, dateOfRelease: LocalDate, author: Author) {
-
     def authorAge() = s"The author of '$name' is ${author.age} years old."
 
     def isWrittenBy() = s"'$name' is written by ${author.fullName}."
