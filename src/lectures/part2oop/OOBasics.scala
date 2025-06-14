@@ -55,7 +55,7 @@ object OOBasics extends App {
     }
     def increment(n: Int): Counter = {
       if (n <= 0) {
-        println(s"This counter has a value of ${value}.")
+        println(s"This counter has a value of $value.")
         this
       }
       else increment().increment(n - 1)
