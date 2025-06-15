@@ -10,6 +10,15 @@ abstract class MyList {
 
   // Polymorphic call
   override def toString: String = s"[$printElements]"
+
+  def traverse(): Unit = {
+    if (isEmpty) {
+      println("End of list")
+    } else {
+      println(s"Visiting: $head")
+      tail.traverse()
+    }
+  }
 }
 object MyList {
 
@@ -47,6 +56,7 @@ class Cons(h: Int, t: MyList = Empty) extends MyList {
 }
 
 object testList extends App {
-  val myList = MyList(1, 2, 3)
-  println(myList.add(4))
+  val myList = MyList(1, 2, 3, 4, 5)
+  println(myList.add(4).traverse())
+  myList.traverse()
 }
