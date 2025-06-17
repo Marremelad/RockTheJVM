@@ -56,7 +56,7 @@ trait MyPredicate[-T] {
   def test(element: T): Boolean
 }
 
-object Empty extends MyList[Nothing] {
+case object Empty extends MyList[Nothing] {
   def head: Nothing = throw new NoSuchElementException
 
   def tail: MyList[Nothing] = throw new NoSuchElementException
@@ -75,7 +75,7 @@ object Empty extends MyList[Nothing] {
   def flatMap[B](transformer: MyTransformer[Nothing, MyList[B]]): MyList[B] = Empty
 }
 
-class Cons[+A](h: A, t: MyList[A] = Empty) extends MyList[A] {
+case class Cons[+A](h: A, t: MyList[A] = Empty) extends MyList[A] {
   def head = h
 
   def tail = t
