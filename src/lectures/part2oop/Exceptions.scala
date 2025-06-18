@@ -4,7 +4,7 @@ object Exceptions extends App {
 
   val x: String = null
 //  println(x.length)
-// this ^^ will crash with a Null pointer exception
+//  this ^^ will crash with a Null pointer exception
 
   // 1. Throwing exception
 //  val aWeirdValue: String = throw new NullPointerException()
