@@ -17,7 +17,7 @@ abstract class MyList[+A] {
 
   // Concatenation
   def ++[B >: A](list: MyList[B]): MyList[B]
-  def flatMap[B](transformer: MyTransformer[A, MyList[B]]): MyList[B]
+  def flatMap[B](transformer: A => B): MyList[B]
 
   // Polymorphic call
   override def toString: String = s"MyList[$printElements]"
