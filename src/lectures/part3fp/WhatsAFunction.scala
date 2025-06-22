@@ -44,10 +44,9 @@ object WhatsAFunction extends App {
     override def apply(a: String, b: String): String = a + b
   }
 
-  val superAdder = (a: Int) => new Function[Int, Int] {
-    override def apply(b: Int): Int = a * b
-  }
+  // A function that takes an Int and returns a function that takes an Int and returns an Int
+  val superAdder = (x: Int) => (y: Int) => x + y
 
   print(stringConcatenator("Sca", "la!"))
-  println(superAdder(2)(2)) // Curried function
+  println(superAdder(3)(4)) // Curried function
 }

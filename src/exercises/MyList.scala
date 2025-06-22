@@ -108,20 +108,13 @@ object testList extends App {
   val myList = MyList(1, 2, 3)
   val anotherMyList = MyList(4, 5)
 
-
 //  println(myList.filter((element: Int) => element % 2 == 0))
-  println(myList.filter(new Function1[Int, Boolean] {
-    override def apply(element: Int): Boolean = element % 2 == 0
-  }))
+  println(myList.filter(_ % 2 == 0))
 
 //  println(myList.map((element: Int) => element * 2))
-  println(myList.map(new Function1[Int, Int] {
-    override def apply(element: Int): Int = element * 2
-  }))
+  println(myList.map(_ * 2))
 
 //  println(myList.flatMap((element: Int) => new Cons(element, new Cons(element + 1))))
   println(myList ++ anotherMyList)
-  println(myList.flatMap(new Function1[Int, MyList[Int]] {
-    override def apply(element: Int): MyList[Int] = new Cons(element, new Cons(element + 1))
-  }))
+  println(myList.flatMap(element => Cons(element, Cons(element + 1))))
 }
