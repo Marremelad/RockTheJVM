@@ -170,7 +170,7 @@ case class Cons[+A](h: A, t: MyList[A] = Empty) extends MyList[A] {
 
 object testList extends App {
   class Person
-  val myList = MyList(1, 2, 3, 4, 5)
+  val myList = MyList(1, 2, 3)
   val anotherMyList = MyList("Hello", "Scala", "!")
 
 //  println(myList.filter((element: Int) => element % 2 == 0))
@@ -186,11 +186,9 @@ object testList extends App {
   // Hofs
   myList.foreach(println)
   println(myList.sort((x, y) => y - x))
-//  println(myList.zipWith[String, String](anotherMyList, _ + "-" + _))
-  println(myList.fold(1)(_ * _))
+  println(myList.zipWith[String, String](anotherMyList, _ + "-" + _))
+  println(myList.fold(1)(_ + _))
 //  println(myList.fold("Hello", (x: String, y: Int) => x + y))
 
   val someList = List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-
-  println()
 }
