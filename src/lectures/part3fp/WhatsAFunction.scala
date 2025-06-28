@@ -31,7 +31,6 @@ object WhatsAFunction extends App {
   // ALL SCALA FUNCTION ARE OBJECTS
 
   // Exercises:
-
   /*
     1.  a function which takes 2 strings and concatenates them
     2.  transform the MyPredicate and MyTransformer into function types
