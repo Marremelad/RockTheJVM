@@ -22,7 +22,7 @@ abstract class MyList[+A] {
   def reverse(): MyList[A]
 
   // Polymorphic call
-  override def toString: String = s"MyList[$printElements]"
+  override def toString: String = s"MyList($printElements)"
 
   def traverse(): Unit = {
     if (isEmpty) {
@@ -47,7 +47,7 @@ abstract class MyList[+A] {
 object MyList {
   def apply[A](): MyList[A] = Empty
 
-  def apply[A](element: A): MyList[A] = new Cons(element)
+  def apply[A](element: A): MyList[A] = Cons(element)
 
   def apply[A](elements: A*): MyList[A] = {
     apply(elements.toList, Empty)
@@ -56,7 +56,7 @@ object MyList {
   def apply[A](elements: List[A], result: MyList[A] = Empty): MyList[A] = {
     if (elements.length <= 0) result
     else {
-      apply(elements.init, new Cons(elements.last, result))
+      apply(elements.init, Cons(elements.last, result))
     }
   }
 }
@@ -76,7 +76,7 @@ case object Empty extends MyList[Nothing] {
 
   def isEmpty: Boolean = true
 
-  def add[B >: Nothing](element: B): MyList[B] = new Cons(element, Empty)
+  def add[B >: Nothing](element: B): MyList[B] = Cons(element, Empty)
 
   def printElements: String = ""
 
@@ -92,7 +92,7 @@ case object Empty extends MyList[Nothing] {
   // Hofs
   def foreach(f: Nothing => Unit): Unit = ()
 
-  def sort(compare: (Nothing, Nothing) => Int) = Empty
+  def sort(compare: (Nothing, Nothing) => Int): Empty.type = Empty
 
   def zipWith[B, C](list: MyList[B], zip: (Nothing, B) => C): MyList[C] = {
     if (!list.isEmpty) throw new RuntimeException("Lists do not have the same length")
@@ -105,13 +105,13 @@ case object Empty extends MyList[Nothing] {
 }
 
 case class Cons[+A](h: A, t: MyList[A] = Empty) extends MyList[A] {
-  def head = h
+  def head: A = h
 
-  def tail = t
+  def tail: MyList[A] = t
 
   def isEmpty: Boolean = false
 
-  def add[B >: A](element: B): MyList[B] = new Cons(element, this)
+  def add[B >: A](element: B): MyList[B] = Cons(element, this)
 
   def printElements: String = {
     if (tail.isEmpty) s"$head"
@@ -119,15 +119,15 @@ case class Cons[+A](h: A, t: MyList[A] = Empty) extends MyList[A] {
   }
 
   def filter(predicate: A => Boolean): MyList[A] = {
-    if (predicate(h)) new Cons(h, t.filter(predicate))
+    if (predicate(h)) Cons(h, t.filter(predicate))
     else t.filter(predicate)
   }
 
   def map[B](transformer: A => B): MyList[B] = {
-    new Cons(transformer(h), t.map(transformer))
+    Cons(transformer(h), t.map(transformer))
   }
 
-  def ++[B >: A](list: MyList[B]): MyList[B] = new Cons(h, t ++ list)
+  def ++[B >: A](list: MyList[B]): MyList[B] = Cons(h, t ++ list)
   def flatMap[B](transformer: A => MyList[B]): MyList[B] = {
     transformer(h) ++ t.flatMap(transformer)
   }
@@ -168,27 +168,33 @@ case class Cons[+A](h: A, t: MyList[A] = Empty) extends MyList[A] {
 //  }
 }
 
-object testList extends App {
-  class Person
-  val myList = MyList(1, 2, 3)
-  val anotherMyList = MyList("Hello", "Scala", "!")
+object ListTest extends App {
+  val listOfIntegers = MyList(1, 2, 3)
+  val cloneListOfIntegers = MyList(1, 2, 3)
+  val anotherListOfIntegers = MyList(4, 5)
+  val listOfStrings = MyList("Hello", "Scala")
 
-//  println(myList.filter((element: Int) => element % 2 == 0))
-  println(myList.filter(_ % 2 == 0))
+  println(listOfIntegers.toString)
+  println(listOfStrings.toString)
 
-//  println(myList.map((element: Int) => element * 2))
-  println(myList.map(_ * 2))
+  println(listOfIntegers.map(_ * 2).toString)
 
-//  println(myList.flatMap((element: Int) => new Cons(element, new Cons(element + 1))))
-  println(myList ++ anotherMyList)
-  println(myList.flatMap(element => Cons(element, Cons(element + 1))))
+  println(listOfIntegers.filter(_ % 2 == 0).toString)
 
-  // Hofs
-  myList.foreach(println)
-  println(myList.sort((x, y) => y - x))
-  println(myList.zipWith[String, String](anotherMyList, _ + "-" + _))
-  println(myList.fold(1)(_ + _))
-//  println(myList.fold("Hello", (x: String, y: Int) => x + y))
+  println((listOfIntegers ++ anotherListOfIntegers).toString)
+  println(listOfIntegers.flatMap(elem => Cons(elem, Cons(elem + 1, Empty))).toString)
 
-  val someList = List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+  println(cloneListOfIntegers == listOfIntegers)
+
+  listOfIntegers.foreach(println)
+  println(listOfIntegers.sort((x, y) => y - x))
+  println(anotherListOfIntegers.zipWith[String, String](listOfStrings, _ + "-" + _))
+  println(listOfIntegers.fold(0)(_ + _))
+
+  // for comprehensions
+  val combinations = for {
+    n <- listOfIntegers
+    string <- listOfStrings
+  } yield s"$n-$string"
+  println(combinations)
 }
