@@ -70,6 +70,10 @@ object Sequences extends App {
   val numberList = (1 to maxCapacity).toList
   val numbersVector = (1 to maxCapacity).toVector
 
+  // + Keeps reference to tail
+  // - Updating an element in the middle takes a long time
   println(getWriteTime(numberList))
+  // + Depth of tree is small
+  // - Needs to replace an entire 32-element chunk (Not really a downside)
   println(getWriteTime(numbersVector))
 }
