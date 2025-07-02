@@ -174,6 +174,10 @@ object ListTest extends App {
   val anotherListOfIntegers = MyList(4, 5)
   val listOfStrings = MyList("Hello", "Scala")
 
+//  println(listOfIntegers.map(new Function[Int, Int] { // Creating an anonymous function object
+//    override def apply(x: Int): Int = x + 1
+//  }))
+
   println(listOfIntegers.toString)
   println(listOfStrings.toString)
 
