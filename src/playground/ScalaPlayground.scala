@@ -2,9 +2,11 @@ package playground
 
 object ScalaPlayground extends App {
 
-  val listOne = List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-  val listTwo = List('a', 'b', 'c')
-  val testList = List(2, 3 ,1)
+  val list = List(1, 2, 3)
+  println(list.map(n => n + 1))
+  println(list.flatMap(n => List(n, n + 1, n + 2)))
 
-  println(listOne.reverse.tail.head)
+//  def flatMap[B](transformer: A => MyList[B]): MyList[B] = {
+//    transformer(h) ++ t.flatMap(transformer)
+//  }
 }
