@@ -1,6 +1,6 @@
 package lectures.part3fp
 
-object MapFlatmapFilter extends App {
+object MapFlatmapFilterFor extends App {
 
   val list = List(1, 2, 3)
   println(list.head)
