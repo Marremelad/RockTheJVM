@@ -1,12 +1,11 @@
 package playground
 
+
 object ScalaPlayground extends App {
+  def nTimes(f: Int => Int, n: Int): Int => Int =
+    if (n <= 0) (x: Int) => x
+    else (x: Int) => nTimes(f, n - 1)(f(x))
 
-  val list = List(1, 2, 3)
-  println(list.map(n => n + 1))
-  println(list.flatMap(n => List(n, n + 1, n + 2)))
+  // (x: Int) => ((x: Int) => ((x: Int) => x)(f(x)))(f(x))
 
-//  def flatMap[B](transformer: A => MyList[B]): MyList[B] = {
-//    transformer(h) ++ t.flatMap(transformer)
-//  }
 }
