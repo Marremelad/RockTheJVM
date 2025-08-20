@@ -1,3 +1,0 @@
-object Scripts extends App {
-
-}
