@@ -45,3 +45,5 @@ build/
 
 ### Scala ###
 .bsp/
+### Intelij idea folder
+.idea
