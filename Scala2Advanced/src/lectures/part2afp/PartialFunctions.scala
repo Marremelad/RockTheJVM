@@ -1,4 +1,4 @@
-package part2afp
+package lectures.part2afp
 
 object PartialFunctions extends App {
   val aFunction = (x: Int) => x + 1 // Function[Int, Int] === Int => Int

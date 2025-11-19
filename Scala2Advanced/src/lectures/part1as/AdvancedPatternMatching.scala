@@ -1,6 +1,4 @@
-package part1as
-
-import part1as.AdvancedPatternMatching.Person
+package lectures.part1as
 
 object AdvancedPatternMatching extends App {
   val numbers = List(1)
