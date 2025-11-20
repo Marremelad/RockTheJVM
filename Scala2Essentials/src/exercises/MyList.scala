@@ -127,6 +127,13 @@ case class Cons[+A](h: A, t: MyList[A] = Empty) extends MyList[A] {
     Cons(transformer(h), t.map(transformer))
   }
 
+//  def ++[B >: Nothing](list: MyList[B]): MyList[B] = list
+//  def flatMap[B](transformer: Nothing => MyList[B]): MyList[B] = Empty
+
+//  val someList = List(1, 2, 3)
+//  val anotherList = List(3, 4)
+//  println(someList.flatMap(x => anotherList.flatMap(y => List(x + y))))
+
   def ++[B >: A](list: MyList[B]): MyList[B] = Cons(h, t ++ list)
   def flatMap[B](transformer: A => MyList[B]): MyList[B] = {
     transformer(h) ++ t.flatMap(transformer)
