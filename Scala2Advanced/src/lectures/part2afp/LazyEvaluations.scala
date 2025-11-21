@@ -1,6 +1,6 @@
 package lectures.part2afp
 
-object LazyEvaluation extends App {
+object LazyEvaluations extends App {
 
   // lazy DELAYS the evaluation of values
   lazy val x: Int = {
